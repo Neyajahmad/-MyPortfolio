@@ -8,7 +8,7 @@ import { Brain, BarChart2, Users } from 'lucide-react';
 const techIcons = {
   'Java':          'https://cdn.simpleicons.org/openjdk',
   'JavaScript':    'https://cdn.simpleicons.org/javascript',
-  'C++':           'https://cdn.simpleicons.org/cplusplus',
+  'Python':        'https://cdn.simpleicons.org/python',
   'HTML':          'https://cdn.simpleicons.org/html5',
   'CSS':           'https://cdn.simpleicons.org/css',
   'Tailwind CSS':  'https://cdn.simpleicons.org/tailwindcss',
@@ -20,6 +20,7 @@ const techIcons = {
   'Git':           'https://cdn.simpleicons.org/git',
   'GitHub':        'https://cdn.simpleicons.org/github',
   'Android Studio':'https://cdn.simpleicons.org/androidstudio',
+  'Docker':        'https://cdn.simpleicons.org/docker',
 };
 
 // Lucide icons for soft skills

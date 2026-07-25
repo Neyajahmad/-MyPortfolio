@@ -1,0 +1,72 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1c2a3a"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="50%" cy="32%" r="55%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shield1" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bg1)"/>
+  <rect width="1200" height="800" fill="url(#glow1)"/>
+
+  <!-- topographic contour lines -->
+  <g stroke="#ffffff" stroke-opacity="0.06" fill="none" stroke-width="1.5">
+    <path d="M-50 620 Q 300 560 600 620 T 1250 600"/>
+    <path d="M-50 670 Q 300 610 600 670 T 1250 650"/>
+    <path d="M-50 720 Q 300 660 600 720 T 1250 700"/>
+    <path d="M-50 770 Q 300 710 600 770 T 1250 750"/>
+  </g>
+
+  <!-- dotted route path -->
+  <g stroke="#f59e0b" stroke-opacity="0.35" stroke-width="3" fill="none" stroke-dasharray="2 14" stroke-linecap="round">
+    <path d="M60 120 C 300 220, 420 60, 640 160 S 980 260 1140 140"/>
+  </g>
+  <circle cx="60" cy="120" r="6" fill="#f59e0b" opacity="0.6"/>
+  <circle cx="1140" cy="140" r="6" fill="#f59e0b" opacity="0.6"/>
+
+  <!-- shield icon -->
+  <g transform="translate(600,255)">
+    <circle r="86" fill="none" stroke="#f59e0b" stroke-opacity="0.35" stroke-width="1.5"/>
+    <path d="M0 -55 L48 -34 L48 8 C48 46 24 72 0 84 C-24 72 -48 46 -48 8 L-48 -34 Z" fill="url(#shield1)"/>
+    <path d="M-22 2 L-6 20 L26 -18" fill="none" stroke="#0b1220" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- map pin accent, top right -->
+  <g transform="translate(1020,180)" opacity="0.85">
+    <path d="M0 0 C22 0 40 18 40 40 C40 66 0 100 0 100 C0 100 -40 66 -40 40 C-40 18 -22 0 0 0 Z" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
+    <circle cx="0" cy="38" r="12" fill="#f59e0b"/>
+  </g>
+
+  <text x="600" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="58" font-weight="700" fill="#ffffff" text-anchor="middle">Tourist Safety</text>
+  <text x="600" y="470" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="5" fill="#f59e0b" text-anchor="middle">AI POWERED EMERGENCY ASSISTANCE SYSTEM</text>
+
+  <!-- tech chips -->
+  <g font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#e5e7eb" text-anchor="middle">
+    <g transform="translate(600,540)">
+      <rect x="-430" y="-22" width="140" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="-360" y="4">React.js</text>
+
+      <rect x="-280" y="-22" width="150" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="-205" y="4">Node.js</text>
+
+      <rect x="-120" y="-22" width="150" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="-45" y="4">Socket.io</text>
+
+      <rect x="40" y="-22" width="150" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="115" y="4">MongoDB</text>
+
+      <rect x="200" y="-22" width="230" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="315" y="4">Python AI Service</text>
+    </g>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="798" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+</svg>

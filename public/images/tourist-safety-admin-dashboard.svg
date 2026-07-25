@@ -1,0 +1,61 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="100%" stop-color="#1c1a2e"/>
+    </linearGradient>
+    <radialGradient id="glow3" cx="70%" cy="25%" r="55%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg3)"/>
+  <rect width="1200" height="800" fill="url(#glow3)"/>
+
+  <!-- header bar -->
+  <g transform="translate(60,60)">
+    <circle cx="18" cy="18" r="18" fill="#f59e0b" fill-opacity="0.2" stroke="#f59e0b"/>
+    <path d="M18 8 L30 13 L30 22 C30 30 25 35 18 39 C11 35 6 30 6 22 L6 13 Z" fill="#f59e0b" transform="translate(0,-1) scale(0.7)"/>
+    <text x="48" y="24" font-family="Georgia, serif" font-size="24" fill="#ffffff" font-weight="700">Admin Dashboard</text>
+  </g>
+
+  <!-- world map dotted grid -->
+  <g transform="translate(60,140)">
+    <rect width="1080" height="380" rx="20" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.12"/>
+    <g fill="#ffffff" fill-opacity="0.15">
+      <circle cx="80" cy="60" r="2"/><circle cx="120" cy="60" r="2"/><circle cx="160" cy="60" r="2"/>
+      <circle cx="200" cy="60" r="2"/><circle cx="240" cy="60" r="2"/><circle cx="280" cy="60" r="2"/>
+      <circle cx="80" cy="100" r="2"/><circle cx="120" cy="100" r="2"/><circle cx="160" cy="100" r="2"/>
+      <circle cx="200" cy="100" r="2"/><circle cx="240" cy="100" r="2"/><circle cx="280" cy="100" r="2"/>
+      <circle cx="80" cy="140" r="2"/><circle cx="120" cy="140" r="2"/><circle cx="160" cy="140" r="2"/>
+      <circle cx="200" cy="140" r="2"/><circle cx="240" cy="140" r="2"/><circle cx="280" cy="140" r="2"/>
+    </g>
+    <!-- tourist markers -->
+    <circle cx="380" cy="120" r="9" fill="#22c55e"/>
+    <circle cx="560" cy="200" r="9" fill="#22c55e"/>
+    <circle cx="720" cy="90" r="9" fill="#ef4444"/>
+    <circle cx="720" cy="90" r="20" fill="none" stroke="#ef4444" stroke-width="2" opacity="0.6"/>
+    <circle cx="900" cy="260" r="9" fill="#22c55e"/>
+    <text x="750" y="70" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#ef4444">SOS ALERT</text>
+  </g>
+
+  <!-- alert / chat panel -->
+  <g transform="translate(60,550)">
+    <rect width="520" height="130" rx="16" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="24" y="34" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#ef4444" font-weight="700">Emergency Alert — Tourist #204</text>
+    <text x="24" y="64" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#ffffff" fill-opacity="0.7">Live location shared • Awaiting response</text>
+    <rect x="24" y="82" width="160" height="34" rx="17" fill="#f59e0b"/>
+    <text x="104" y="104" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" fill="#0b1220" text-anchor="middle">RESPOND NOW</text>
+  </g>
+
+  <g transform="translate(620,550)">
+    <rect width="520" height="130" rx="16" fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.12"/>
+    <text x="24" y="34" font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#ffffff" font-weight="700">Live Chat</text>
+    <rect x="24" y="50" width="300" height="24" rx="12" fill="#3b82f6" fill-opacity="0.25"/>
+    <text x="36" y="67" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#ffffff">Are you safe? Sending help now.</text>
+    <rect x="220" y="86" width="280" height="24" rx="12" fill="#ffffff" fill-opacity="0.1"/>
+    <text x="232" y="103" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#ffffff">Yes, near the north bridge.</text>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="798" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+</svg>

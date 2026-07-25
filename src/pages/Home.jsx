@@ -7,6 +7,7 @@ import { ArrowRight } from 'lucide-react';
 import { Skills } from '../sections/Skills';
 import { Timeline } from '../sections/Timeline';
 import { Education } from '../sections/Education';
+import { Experience } from '../sections/Experience';
 import { AnimatedSection } from '../components/AnimatedSection';
 
 export function Home() {
@@ -37,6 +38,9 @@ export function Home() {
         </Link>
       </div>
 
+      <AnimatedSection>
+        <Experience />
+      </AnimatedSection>
       <AnimatedSection>
         <Skills />
       </AnimatedSection>

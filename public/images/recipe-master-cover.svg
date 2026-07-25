@@ -1,0 +1,55 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgR" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a0f0a"/>
+      <stop offset="100%" stop-color="#2a1610"/>
+    </linearGradient>
+    <radialGradient id="glowR" cx="50%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#f97316" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="800" fill="url(#bgR)"/>
+  <rect width="1200" height="800" fill="url(#glowR)"/>
+
+  <!-- plate -->
+  <circle cx="600" cy="255" r="120" fill="none" stroke="#f97316" stroke-opacity="0.3" stroke-width="1.5"/>
+  <circle cx="600" cy="255" r="86" fill="#ffffff" fill-opacity="0.03" stroke="#f97316" stroke-opacity="0.35" stroke-width="1.5"/>
+
+  <!-- fork -->
+  <g transform="translate(560,255)">
+    <rect x="-4" y="-70" width="8" height="140" rx="4" fill="#f97316"/>
+    <rect x="-16" y="-70" width="6" height="34" rx="3" fill="#f97316"/>
+    <rect x="-4" y="-70" width="6" height="34" rx="3" fill="#f97316" opacity="0"/>
+    <rect x="6" y="-70" width="6" height="34" rx="3" fill="#f97316"/>
+    <rect x="-20" y="-70" width="40" height="10" rx="4" fill="#f97316"/>
+  </g>
+
+  <!-- knife -->
+  <g transform="translate(640,255)">
+    <path d="M-6 -70 C 10 -70 16 -50 16 -20 L16 20 L-6 20 Z" fill="#f97316"/>
+    <rect x="-6" y="20" width="12" height="50" rx="4" fill="#f97316"/>
+  </g>
+
+  <text x="600" y="430" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="700" fill="#ffffff" text-anchor="middle">Recipe Master</text>
+  <text x="600" y="470" font-family="Arial, Helvetica, sans-serif" font-size="18" letter-spacing="5" fill="#f97316" text-anchor="middle">RECIPE SEARCH &amp; MEAL PLANNER</text>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#e5e7eb" text-anchor="middle">
+    <g transform="translate(600,540)">
+      <rect x="-330" y="-22" width="130" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="-265" y="4">Laravel</text>
+
+      <rect x="-190" y="-22" width="130" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="-125" y="4">Blade</text>
+
+      <rect x="-50" y="-22" width="130" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="15" y="4">MySQL</text>
+
+      <rect x="90" y="-22" width="220" height="40" rx="20" fill="#ffffff" fill-opacity="0.06" stroke="#ffffff" stroke-opacity="0.15"/>
+      <text x="200" y="4">Tailwind CSS</text>
+    </g>
+  </g>
+
+  <rect x="1" y="1" width="1198" height="798" fill="none" stroke="#ffffff" stroke-opacity="0.08"/>
+</svg>
