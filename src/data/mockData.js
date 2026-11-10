@@ -372,7 +372,7 @@ export const education = [
     institution: "Lovely Professional University",
     degree: "BTech, Computer Science & Engineering",
     score: "CGPA: 7.52",
-    period: "2022 - Present"
+    period: "2022 - 2026"
   },
   {
     institution: "DAV Public School, Dhanbad",
