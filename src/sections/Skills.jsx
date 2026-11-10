@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Section } from '../components/Section';
+import { SectionHeader } from '../components/SectionHeader';
 import { skills } from '../data/mockData';
 import { Brain, BarChart2, Users } from 'lucide-react';
 
@@ -53,47 +54,55 @@ function SkillIcon({ name }) {
   return null;
 }
 
+const ease = [0.16, 1, 0.3, 1];
+const group = { hidden: {}, show: { transition: { staggerChildren: 0.05 } } };
+const chip = {
+  hidden: { opacity: 0, y: 14, scale: 0.94 },
+  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.55, ease } },
+};
+
 export function Skills() {
   return (
     <Section id="skills" className="border-t border-text/10">
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-8">
-        <div className="md:col-span-4">
-          <h2 className="font-serif text-4xl md:text-5xl">Capabilities.</h2>
-          <p className="mt-6 text-text/60 font-light leading-relaxed">
-            A precise skill set curated for building efficient and scalable digital products.
-          </p>
-        </div>
+      <SectionHeader
+        index="03"
+        eyebrow="Skills & Tools"
+        title="Capabilities"
+        description="A precise skill set curated for building efficient and scalable digital products."
+        className="mb-14 md:mb-20"
+      />
 
-        <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-12 md:pl-12">
-          {Object.entries(skills).map(([category, items], idx) => (
-            <motion.div
-              key={category}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="flex flex-col gap-6"
-            >
-              <h3 className="uppercase tracking-widest text-xs font-semibold text-text/50">
+      <div className="grid grid-cols-1 gap-x-12 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        {Object.entries(skills).map(([category, items], idx) => (
+          <div key={category} className="flex flex-col gap-5 border-t border-text/10 pt-6">
+            <div className="flex items-baseline justify-between">
+              <h3 className="font-display text-xs font-normal uppercase tracking-[0.2em] text-text/50">
                 {category}
               </h3>
-              <div className="flex flex-wrap gap-3">
-                {items.map(item => (
-                  <motion.span
-                    key={item}
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-2 border border-text/20 px-4 py-2 rounded-full text-sm hover:border-text hover:bg-text hover:text-background transition-all duration-300 font-light cursor-default"
-                  >
-                    <span className="flex items-center flex-shrink-0">
-                      <SkillIcon name={item} />
-                    </span>
-                    {item}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              <span className="font-mono text-xs text-terracotta">{String(idx + 1).padStart(2, '0')}</span>
+            </div>
+            <motion.ul
+              variants={group}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: '-60px' }}
+              className="flex flex-wrap gap-2.5"
+            >
+              {items.map((item) => (
+                <motion.li
+                  key={item}
+                  variants={chip}
+                  className="group flex cursor-default items-center gap-2 rounded-full border border-text/15 px-4 py-2 text-sm font-light transition-colors duration-300 hover:border-text hover:bg-text hover:text-background"
+                >
+                  <span className="flex flex-shrink-0 items-center grayscale transition-[filter] duration-300 group-hover:grayscale-0">
+                    <SkillIcon name={item} />
+                  </span>
+                  {item}
+                </motion.li>
+              ))}
+            </motion.ul>
+          </div>
+        ))}
       </div>
     </Section>
   );

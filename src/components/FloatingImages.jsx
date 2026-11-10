@@ -39,7 +39,7 @@ const SPAWN_ZONES = [
   { top: '85%', left: '80%' }, { top: '88%', left: '90%' },
 ];
 
-// Card size — slightly bigger than before so images "cover" more area
+// Card size: slightly bigger than before so images "cover" more area
 function getCardSize() {
   if (typeof window === 'undefined') return 75;
   if (window.innerWidth < 400) return 62;   // tiny phone
@@ -52,7 +52,7 @@ const ROTATIONS = [-10, 5, -4, 8, -6, 3, -7, 6, -2, 7, -5, 4, -9, 2];
 
 function SpawnedCard({ id, src, top, left, rotation, size, onExpire }) {
   useEffect(() => {
-    // Card lives 1.8–2.8s — shorter so more churn = denser feel
+    // Card lives 1.8-2.8s: shorter so more churn = denser feel
     const lifetime = 1800 + Math.random() * 1000;
     const t = setTimeout(() => onExpire(id), lifetime);
     return () => clearTimeout(t);
@@ -122,7 +122,7 @@ export function FloatingImages() {
     const size = getCardSize();
 
     setCards(prev => [
-      ...prev.slice(-14), // keep up to 14 visible — dense coverage
+      ...prev.slice(-14), // keep up to 14 visible: dense coverage
       { id: Date.now() + Math.random(), src, top: zone.top, left: zone.left, rotation, size }
     ]);
   }, []);
@@ -132,7 +132,7 @@ export function FloatingImages() {
     for (let i = 0; i < 6; i++) {
       setTimeout(spawnCard, i * 120);
     }
-    // Then spawn one every 600ms — fast enough to stay dense
+    // Then spawn one every 600ms: fast enough to stay dense
     const interval = setInterval(spawnCard, 600);
     return () => clearInterval(interval);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Local tech images — sharp, fast cycling
+// Local tech images: sharp, fast cycling
 const images = [
   '/images/tech/code.png',
   '/images/tech/circuit.png',
@@ -20,7 +20,7 @@ export function HeroImageCircle({ className = "w-[80px] h-[80px] inline-block mx
     // Switch image precisely every 1 second
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % images.length);
-    }, 500);
+    }, 1600);
 
     return () => clearInterval(interval);
   }, []);
@@ -37,7 +37,7 @@ export function HeroImageCircle({ className = "w-[80px] h-[80px] inline-block mx
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.25, ease: 'linear' }}
+          transition={{ duration: 0.6, ease: 'easeInOut' }}
         />
       </AnimatePresence>
     </div>

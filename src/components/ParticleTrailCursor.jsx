@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 
 // A canvas-based particle trail that follows the mouse.
-// Renders cyan/teal glowing dots that drift and fade — matching the reference screenshot.
+// Renders cyan/teal glowing dots that drift and fade: matching the reference screenshot.
 export function ParticleTrailCursor({ parentRef }) {
   const canvasRef = useRef(null);
 
@@ -47,7 +47,7 @@ export function ParticleTrailCursor({ parentRef }) {
         this.decay = 0.018 + Math.random() * 0.022; // fade speed
         this.radius = 2 + Math.random() * 4;
         // Colour: cyan → teal range
-        const hue = 170 + Math.random() * 30; // 170°–200° (cyan-teal)
+        const hue = 170 + Math.random() * 30; // 170°-200° (cyan-teal)
         this.color = `hsla(${hue}, 100%, 60%, `;
       }
 
@@ -90,7 +90,7 @@ export function ParticleTrailCursor({ parentRef }) {
       // Clear with slight alpha so old particles leave a motion-blur trail
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Spawn 4–6 particles per frame at mouse position
+      // Spawn 4-6 particles per frame at mouse position
       if (mouse.x > 0) {
         const count = 4 + Math.floor(Math.random() * 3);
         for (let i = 0; i < count; i++) {

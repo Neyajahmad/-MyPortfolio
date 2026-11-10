@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { Section } from '../components/Section';
+import { SectionHeader } from '../components/SectionHeader';
 import { personalInfo } from '../data/mockData';
 import { ArrowUpRight, Loader2, CheckCircle2, XCircle, Mail, Github, Linkedin } from 'lucide-react';
 
@@ -58,14 +59,17 @@ export function Contact() {
     <Section id="contact" dark className="pt-32 pb-16">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-12">
         
-        {/* Left Column — Info */}
+        {/* Left Column: Info */}
         <div className="flex flex-col justify-between">
-          <div className="flex flex-col gap-6">
-            <h2 className="font-serif text-6xl md:text-8xl leading-[0.9]">Let's Build<br />Together.</h2>
-            <p className="text-background/60 font-light max-w-sm text-lg mt-6">
-              I'm always open to discussing product design work, collaboration opportunities, or technical challenges.
-            </p>
-          </div>
+          <SectionHeader
+            index="06"
+            eyebrow="Contact"
+            title="Let's Build Together"
+            description="I'm always open to discussing product design work, collaboration opportunities, or technical challenges."
+            layout="stack"
+            tone="dark"
+            size="xl"
+          />
 
           <div className="mt-20 md:mt-32 flex flex-col gap-8">
             <div>
@@ -81,11 +85,11 @@ export function Contact() {
             </div>
             
             <div className="flex gap-8">
-              <a href={`https://${personalInfo.contact.github}`} target="_blank" rel="noopener noreferrer" className="hover:text-sage transition-colors flex items-center gap-2 underline underline-offset-4 decoration-background/30">
+              <a href={`https://${personalInfo.contact.github}`} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors flex items-center gap-2 underline underline-offset-4 decoration-background/30">
                 <Github size={16} className="opacity-70" />
                 GitHub
               </a>
-              <a href={`https://${personalInfo.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="hover:text-sage transition-colors flex items-center gap-2 underline underline-offset-4 decoration-background/30">
+              <a href={`https://${personalInfo.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta transition-colors flex items-center gap-2 underline underline-offset-4 decoration-background/30">
                 <Linkedin size={16} className="opacity-70" />
                 LinkedIn
               </a>
@@ -93,7 +97,7 @@ export function Contact() {
           </div>
         </div>
 
-        {/* Right Column — Form */}
+        {/* Right Column: Form */}
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

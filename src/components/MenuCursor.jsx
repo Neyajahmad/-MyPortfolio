@@ -2,16 +2,16 @@ import React from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
 /**
- * MenuCursor — A soft spotlight glow cursor that only lives inside FullscreenMenu.
+ * MenuCursor: A soft spotlight glow cursor that only lives inside FullscreenMenu.
  *
  * Props:
- *   isHoveringItem — boolean: set to true while mouse is over a nav link
+ *   isHoveringItem: boolean: set to true while mouse is over a nav link
  */
 export function MenuCursor({ isHoveringItem }) {
   const rawX = useMotionValue(-500);
   const rawY = useMotionValue(-500);
 
-  // Spring physics — smooth, slightly lag behind the mouse
+  // Spring physics: smooth, slightly lag behind the mouse
   const x = useSpring(rawX, { stiffness: 120, damping: 20, restDelta: 0.01 });
   const y = useSpring(rawY, { stiffness: 120, damping: 20, restDelta: 0.01 });
 
@@ -44,7 +44,7 @@ export function MenuCursor({ isHoveringItem }) {
         }}
       />
 
-      {/* Optional inner label — scales with hover */}
+      {/* Optional inner label: scales with hover */}
       {isHoveringItem && (
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}

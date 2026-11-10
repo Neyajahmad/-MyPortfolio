@@ -6,7 +6,23 @@ import { Contact } from './sections/Contact';
 import { Home } from './pages/Home';
 import { AllProjects } from './pages/AllProjects';
 import { ProjectDetail } from './pages/ProjectDetail';
+import { NotFound } from './pages/NotFound';
 import { AnimatePresence } from 'framer-motion';
+import { ReactLenis, useLenis } from 'lenis/react';
+
+const prefersReducedMotion =
+  typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/** Pauses smooth scrolling while an overlay is open. */
+function LenisLock({ locked }) {
+  const lenis = useLenis();
+  useEffect(() => {
+    if (!lenis) return;
+    if (locked) lenis.stop();
+    else lenis.start();
+  }, [lenis, locked]);
+  return null;
+}
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -28,7 +44,7 @@ function App() {
     return () => { document.body.style.overflow = 'unset'; };
   }, [menuOpen]);
 
-  return (
+  const content = (
     <div className="bg-background min-h-screen font-sans selection:bg-text selection:text-background flex flex-col items-center">
       <Navbar onMenuOpen={() => setMenuOpen(prev => !prev)} menuOpen={menuOpen} />
 
@@ -39,6 +55,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<AllProjects />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </AnimatePresence>
 
@@ -46,6 +63,15 @@ function App() {
         <Contact />
       </div>
     </div>
+  );
+
+  if (prefersReducedMotion) return content;
+
+  return (
+    <ReactLenis root options={{ lerp: 0.1, smoothWheel: true }}>
+      <LenisLock locked={menuOpen} />
+      {content}
+    </ReactLenis>
   );
 }
 

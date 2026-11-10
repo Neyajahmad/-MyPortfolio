@@ -6,9 +6,10 @@ export function Section({ id, children, className, dark = false }) {
   return (
     <section
       id={id}
+      data-nav-dark={dark ? '' : undefined}
       className={cn(
-        "py-20 md:py-32 w-full",
-        dark ? "bg-text text-background" : "bg-background text-text",
+        "py-24 md:py-32 w-full",
+        dark ? "bg-ink text-background" : "bg-background text-text",
         className
       )}
     >

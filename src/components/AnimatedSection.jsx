@@ -34,31 +34,15 @@ export function AnimatedSection({ children, className = "", id }) {
   const y = useTransform(
     smoothProgress,
     [0, 0.15, 0.85, 1],
-    [80, 0, 0, -80]
+    [60, 0, 0, -40]
   );
   
-  const blurValue = useTransform(
-    smoothProgress,
-    [0, 0.15, 0.85, 1],
-    [10, 0, 0, 10]
-  );
-  
-  // Create dynamic filter string
-  const filter = useTransform(blurValue, (v) => `blur(${v}px)`);
-  
-  // Optional premium flair: slight pinch scale when at extreme edges
-  const scale = useTransform(
-    smoothProgress,
-    [0, 0.15, 0.85, 1],
-    [0.97, 1, 1, 0.97]
-  );
-
   return (
     <motion.div
       id={id}
       ref={ref}
-      style={{ opacity, y, filter, scale }}
-      className={`w-full will-change-[transform,opacity,filter] ${className}`}
+      style={{ opacity, y }}
+      className={`w-full will-change-[transform,opacity] ${className}`}
     >
       {children}
     </motion.div>

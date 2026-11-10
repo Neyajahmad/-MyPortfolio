@@ -1,86 +1,93 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { Container } from '../components/Container';
 import { personalInfo } from '../data/mockData';
-import { ArrowDown } from 'lucide-react';
 import { HeroImageCircle } from '../components/HeroImageCircle';
-import { ColorCursor } from '../components/ColorCursor';
+import { CursorRing, InfoField, Scramble, SliceReveal } from '../components/Kinetic';
+
+const ease = [0.16, 1, 0.3, 1];
+
+/** A line that rises from behind a mask once `play` is true. */
+function RiseLine({ children, play, delay = 0, className }) {
+  return (
+    <span className={`block overflow-hidden pb-[0.08em] ${className || ''}`}>
+      <motion.span
+        className="flex flex-wrap items-center justify-end gap-x-[0.3em]"
+        initial={{ y: '110%' }}
+        animate={{ y: play ? 0 : '110%' }}
+        transition={{ duration: 1, delay, ease }}
+      >
+        {children}
+      </motion.span>
+    </span>
+  );
+}
 
 export function EditorialHero() {
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
-  const heroRef = useRef(null);
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, amount: 0.35 });
+  const reduce = useReducedMotion();
+  const [first, ...rest] = personalInfo.name.split(' ');
+  const last = rest.join(' ');
+
+  // The name lines slide in opposite directions as the section scrolls away.
+  // NEYAJ only moves right and AHMAD only moves left, so neither ever slides
+  // into the info column.
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] });
+  const driftFirst = useTransform(scrollYProgress, [0.5, 1], reduce ? ['0%', '0%'] : ['0%', '8%'], { clamp: true });
+  const driftLast = useTransform(scrollYProgress, [0.5, 1], reduce ? ['0%', '0%'] : ['0%', '-8%'], { clamp: true });
 
   return (
-    <section ref={heroRef} className="relative h-screen min-h-[700px] flex items-center overflow-hidden bg-background text-text">
-      <ColorCursor parentRef={heroRef} />
-      <Container className="w-full relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end pb-20 pt-32">
-        <motion.div
-           initial={{ opacity: 0, y: 50 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], staggerChildren: 0.2 }}
-           className="flex flex-col gap-4 max-w-3xl"
-        >
-          <motion.h2 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-text/60 tracking-[0.2em] uppercase text-sm md:text-base font-light"
-          >
-            {personalInfo.roleTitle}
-          </motion.h2>
-          <motion.h1 
-            style={{ y, fontSize: 'clamp(3rem, 12vw, 10rem)' }}
-            className="font-serif leading-[0.9] tracking-tighter mix-blend-difference mb-8"
-          >
-            {personalInfo.name.split(' ')[0]}<br className="hidden md:block"/> {personalInfo.name.split(' ')[1] || ''}
-          </motion.h1>
-          <motion.h2 className="hidden sm:block text-lg md:text-2xl lg:text-3xl font-light w-full md:w-2/3 leading-relaxed opacity-80 pl-2 md:pl-0 border-l border-text/20 md:border-none">
-            {personalInfo.tagline}
-          </motion.h2>
+    <section
+      ref={sectionRef}
+      className="relative flex h-screen min-h-[700px] items-center overflow-hidden bg-background text-text"
+    >
+      {/* Same minimal cursor as the hero, in dark ink for the light background */}
+      <CursorRing areaRef={sectionRef} tone="dark" />
 
-          {/* Editorial inline tagline with rotating image circle */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.6, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-6 md:mt-10 flex flex-col gap-1"
-          >
-            <div className="font-serif text-2xl md:text-4xl lg:text-5xl text-text/80 leading-tight tracking-tight">
-              Where your ideas can run free.
-            </div>
-            <div className="font-serif text-2xl md:text-4xl lg:text-5xl text-text/80 leading-tight tracking-tight flex items-center flex-wrap gap-x-3">
+      <Container className="relative z-10 grid w-full grid-cols-1 gap-12 pb-12 pt-28 md:grid-cols-12 md:items-center md:gap-8">
+        {/* Info column */}
+        <div className="relative order-2 pl-5 md:order-1 md:col-span-4 lg:col-span-3">
+          <motion.span
+            aria-hidden="true"
+            initial={{ scaleY: 0 }}
+            animate={{ scaleY: inView ? 1 : 0 }}
+            transition={{ duration: 1.1, ease }}
+            className="absolute left-0 top-0 h-full w-px origin-top bg-text/20"
+          />
+          <div className="flex flex-col gap-5 md:gap-6">
+            <Scramble play={inView} text="ABOUT  01" className="font-display text-sm tracking-[0.18em] text-text" />
+            <InfoField tone="dark" play={inView} label="Role" value={personalInfo.roleTitle} large />
+            <InfoField tone="dark" play={inView} label="Based in" value="India" />
+            <InfoField tone="dark" play={inView} label="Statement" value={personalInfo.tagline} />
+          </div>
+        </div>
+
+        {/* Giant name + line */}
+        <div className="order-1 md:order-2 md:col-span-8 lg:col-span-9">
+          <h2 aria-label={personalInfo.name} className="font-display font-bold uppercase leading-[0.86] tracking-[-0.01em] [font-size:clamp(4.5rem,25vw,17rem)] md:[font-size:clamp(5rem,17.5vw,17rem)]">
+            <motion.span style={{ x: driftFirst }} className="block" aria-hidden="true">
+              <SliceReveal play={inView} className="w-max">
+                <span className="block">{first}</span>
+              </SliceReveal>
+            </motion.span>
+            <motion.span style={{ x: driftLast }} className="flex justify-end" aria-hidden="true">
+              <SliceReveal play={inView} delay={0.15} className="w-max">
+                <span className="block">{last}</span>
+              </SliceReveal>
+            </motion.span>
+          </h2>
+
+          <div className="mt-6 text-right font-display font-extralight leading-[1.15] text-text/80 [font-size:clamp(1.6rem,3.6vw,3.4rem)] md:mt-8">
+            <RiseLine play={inView} delay={0.45}>Where your ideas can run free.</RiseLine>
+            <RiseLine play={inView} delay={0.6}>
               And code
-              <HeroImageCircle className="w-12 h-12 md:w-16 md:h-16 lg:w-[72px] lg:h-[72px] inline-flex rounded-full overflow-hidden shadow-lg flex-shrink-0 align-middle" />
+              <HeroImageCircle className="relative inline-flex h-[1.1em] w-[1.1em] flex-shrink-0 overflow-hidden rounded-full align-middle !shadow-none ring-1 ring-text/20" />
               evolves.
-            </div>
-          </motion.div>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-           initial={{ opacity: 0 }}
-           whileInView={{ opacity: 1 }}
-           viewport={{ once: true }}
-           transition={{ delay: 1, duration: 1 }}
-           style={{ y }}
-           className="hidden md:flex flex-col items-center gap-4 mt-12 md:mt-0"
-        >
-          <span className="uppercase text-[10px] tracking-widest font-bold rotate-90 translate-y-6 opacity-40">Scroll</span>
-          <ArrowDown size={32} strokeWidth={1} className="animate-bounce opacity-40 mt-12" />
-        </motion.div>
+            </RiseLine>
+          </div>
+        </div>
       </Container>
-      
-      {/* Background large typography noise */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full pointer-events-none opacity-[0.03] flex justify-center overflow-hidden select-none z-0">
-        <span className="font-serif whitespace-nowrap leading-none tracking-tighter" style={{ fontSize: 'clamp(8rem, 30vw, 28rem)' }}>
-          PORTFOLIO
-        </span>
-      </div>
-
-
     </section>
   );
 }

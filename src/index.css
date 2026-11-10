@@ -1,10 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@200;300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* Scale the whole layout up on very wide screens (large monitors, TVs).
+     Sizes are in rem, so text, spacing and the content width grow together. */
+  @media (min-width: 2200px) {
+    html { font-size: 20px; }
+  }
+  @media (min-width: 3000px) {
+    html { font-size: 26px; }
+  }
+
   body {
     @apply bg-background text-text font-sans antialiased overflow-x-hidden;
   }

@@ -11,11 +11,12 @@ export function Navbar({ onMenuOpen, menuOpen }) {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
-      if (location.pathname === '/') {
-        setIsOverDarkSection(window.scrollY < window.innerHeight - 80);
-      } else {
-        setIsOverDarkSection(false);
-      }
+      // Light text whenever the bar sits over a section marked data-nav-dark
+      const overDark = [...document.querySelectorAll('[data-nav-dark]')].some((el) => {
+        const r = el.getBoundingClientRect();
+        return r.top <= 60 && r.bottom >= 60;
+      });
+      setIsOverDarkSection(overDark);
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll);
@@ -27,7 +28,7 @@ export function Navbar({ onMenuOpen, menuOpen }) {
   const bgColor = menuOpen
     ? 'bg-transparent'
     : isOverDarkSection
-      ? 'bg-black/50'
+      ? 'bg-ink/60'
       : 'bg-background/90';
 
   return (

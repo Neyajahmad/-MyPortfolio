@@ -56,10 +56,10 @@ export function SpotlightCursor({ parentRef }) {
             y,
             width: CURSOR_SIZE,
             height: CURSOR_SIZE,
-            background: 'radial-gradient(circle, rgba(0,0,0,0.07) 0%, rgba(0,0,0,0.02) 60%, transparent 100%)',
-            backdropFilter: 'blur(2px)',
+            // Soft warm glow only: no backdrop blur, so text under the cursor stays sharp
+            background: 'radial-gradient(circle, rgba(199,106,74,0.08) 0%, rgba(199,106,74,0.03) 45%, transparent 70%)',
           }}
-          className="fixed top-0 left-0 rounded-full pointer-events-none z-50 mix-blend-multiply"
+          className="fixed top-0 left-0 rounded-full pointer-events-none z-0 mix-blend-multiply"
         />
       )}
     </AnimatePresence>

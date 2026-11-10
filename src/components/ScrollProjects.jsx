@@ -96,7 +96,7 @@ function ScrollProjectCard({ project, config, scrollYProgress }) {
 
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent z-10 flex flex-col pointer-events-none">
           <h3 className="font-serif text-lg md:text-2xl lg:text-3xl text-white drop-shadow-md leading-tight mb-2 line-clamp-2">
-            {project.title.split(' \u2013 ')[0]}
+            {project.title}
           </h3>
           <div className="flex flex-wrap gap-2 text-[10px] md:text-xs uppercase tracking-widest text-white/80 font-medium">
             {project.techStack.slice(0, 3).join(' \u2022 ')}
